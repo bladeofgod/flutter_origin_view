@@ -86,7 +86,7 @@ class ComplexPageState extends State<ComplexPage> {
     );
   }
 
-  final url = "https://www.tripalink.com";
+  final url = "https://www.baidu.com";
 //  Widget justWeb(Size size){
 //    return WebView(
 //      initialUrl: url,

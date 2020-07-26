@@ -61,17 +61,17 @@ public class JavaMainActivity extends FlutterActivity {
         registry.registerViewFactory("platform_text_view",
                 new AndroidTextViewFactory(StandardMessageCodec.INSTANCE));
         activity = this;
-        new Handler()
-                .postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        TextView tv = new TextView(activity);
-                        tv.setText("asldkjasdklj");
-                        tv.setTextColor(0xFFFF8C00);
-                        tv.setBackgroundColor(0xFF1E90FF);
-                        addContentView(tv,buildLayoutParams(null));
-                    }
-                },2000);
+//        new Handler()
+//                .postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        TextView tv = new TextView(activity);
+//                        tv.setText("asldkjasdklj");
+//                        tv.setTextColor(0xFFFF8C00);
+//                        tv.setBackgroundColor(0xFF1E90FF);
+//                        addContentView(tv,buildLayoutParams(null));
+//                    }
+//                },2000);
     }
 
 //    @Override
