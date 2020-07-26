@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.PersistableBundle;
 import android.view.Display;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -61,17 +62,13 @@ public class JavaMainActivity extends FlutterActivity {
         registry.registerViewFactory("platform_text_view",
                 new AndroidTextViewFactory(StandardMessageCodec.INSTANCE));
         activity = this;
-//        new Handler()
-//                .postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        TextView tv = new TextView(activity);
-//                        tv.setText("asldkjasdklj");
-//                        tv.setTextColor(0xFFFF8C00);
-//                        tv.setBackgroundColor(0xFF1E90FF);
-//                        addContentView(tv,buildLayoutParams(null));
-//                    }
-//                },2000);
+        new Handler()
+                .postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        iv();
+                    }
+                },2000);
     }
 
 //    @Override
@@ -80,4 +77,18 @@ public class JavaMainActivity extends FlutterActivity {
 //        setContentView(R.layout.java_main_activity);
 //
 //    }
+
+    private void iv(){
+        ImageView iv = new ImageView(activity);
+        iv.setImageResource(R.drawable.svg_devil);
+        addContentView(iv,buildLayoutParams(null));
+    }
+
+    private void tv(){
+        TextView tv = new TextView(activity);
+        tv.setText("asldkjasdklj");
+        tv.setTextColor(0xFFFF8C00);
+        tv.setBackgroundColor(0xFF1E90FF);
+        addContentView(tv,buildLayoutParams(null));
+    }
 }
