@@ -50,7 +50,7 @@ public class JavaMainActivity extends FlutterActivity {
         FrameLayout.LayoutParams params;
         params = new FrameLayout.LayoutParams(
                 dp2px(this, (float) (200*ratio)), dp2px(this, (float) (200*ratio)));
-        params.setMargins(dp2px(this, 10), dp2px(this, 10),
+        params.setMargins(dp2px(this, 10), dp2px(this, 100),
                 dp2px(this, 10), dp2px(this, 10));
 
         return params;
@@ -77,14 +77,14 @@ public class JavaMainActivity extends FlutterActivity {
 //        }
 //
 //
-//        new Handler()
-//                .postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        initListView();
-//
-//                    }
-//                },2000);
+        new Handler()
+                .postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        tv();
+
+                    }
+                },2000);
     }
 
 //    @Override
@@ -122,7 +122,7 @@ public class JavaMainActivity extends FlutterActivity {
 
     private void tv(){
         TextView tv = new TextView(activity);
-        tv.setText("asldkjasdklj");
+        tv.setText("我是原生view");
         tv.setTextColor(0xFFFF8C00);
         tv.setBackgroundColor(0xFF1E90FF);
         addContentView(tv,buildLayoutParams(1));
