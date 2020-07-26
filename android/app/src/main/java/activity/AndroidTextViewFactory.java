@@ -2,6 +2,10 @@ package activity;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+
+import com.bladeofgod.flutter_origin_view.R;
 
 import java.util.Map;
 
@@ -22,21 +26,30 @@ public class AndroidTextViewFactory extends PlatformViewFactory {
         super(createArgsCodec);
     }
 
+    Context context;
+
     @Override
     public PlatformView create(Context context, int viewId, Object args) {
-        AndroidTextView androidTextView = new AndroidTextView(context);
-        androidTextView.textView.setId(viewId);
-        if(args instanceof Map){
-            Log.i("android view factory", "args is map");
-            Map map = (Map) args;
-            String text = "null text";
-            if(map.get("text") != null){
-                text = map.get("text").toString();
-            }
-            androidTextView.textView.setText(text);
-        }
-        androidTextView.textView.setBackgroundColor(0xFF1E90FF);
-        androidTextView.textView.setTextColor(0xFFFF8C00);
-        return androidTextView;
+        this.context = context;
+//        AndroidTextView androidTextView = new AndroidTextView(context);
+//        androidTextView.textView.setId(viewId);
+//        if(args instanceof Map){
+//            Log.i("android view factory", "args is map");
+//            Map map = (Map) args;
+//            String text = "null text";
+//            if(map.get("text") != null){
+//                text = map.get("text").toString();
+//            }
+//            androidTextView.textView.setText(text);
+//        }
+//        androidTextView.textView.setBackgroundColor(0xFF1E90FF);
+//        androidTextView.textView.setTextColor(0xFFFF8C00);
+
+        AndroidImageView androidImageView = new AndroidImageView(context);
+        androidImageView.imageView.setId(viewId);
+        androidImageView.imageView.setImageResource(R.drawable.svg_devil);
+        return androidImageView;
     }
+
+
 }
