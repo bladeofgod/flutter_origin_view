@@ -7,15 +7,22 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.PersistableBundle;
 import android.view.Display;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bladeofgod.flutter_origin_view.MainActivity;
 import com.bladeofgod.flutter_origin_view.R;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import io.flutter.embedding.android.FlutterActivity;
@@ -39,12 +46,12 @@ public class JavaMainActivity extends FlutterActivity {
 //        setContentView(R.layout.java_main_activity);
 //    }
 
-    private FrameLayout.LayoutParams buildLayoutParams(MethodCall call) {
+    private FrameLayout.LayoutParams buildLayoutParams(double ratio) {
         FrameLayout.LayoutParams params;
         params = new FrameLayout.LayoutParams(
-                dp2px(this, 200), dp2px(this, 200));
-        params.setMargins(dp2px(this, 200), dp2px(this, 200),
-                dp2px(this, 200), dp2px(this, 200));
+                dp2px(this, (float) (200*ratio)), dp2px(this, (float) (200*ratio)));
+        params.setMargins(dp2px(this, 10), dp2px(this, 10),
+                dp2px(this, 10), dp2px(this, 10));
 
         return params;
     }
@@ -54,6 +61,8 @@ public class JavaMainActivity extends FlutterActivity {
         return (int) (dp * scale + 0.5f);
     }
 
+    List<Integer> list = new ArrayList<>();
+
     Activity activity;
     @Override
     public void configureFlutterEngine(FlutterEngine flutterEngine) {
@@ -62,13 +71,20 @@ public class JavaMainActivity extends FlutterActivity {
         registry.registerViewFactory("platform_text_view",
                 new AndroidTextViewFactory(StandardMessageCodec.INSTANCE));
         activity = this;
-        new Handler()
-                .postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        iv();
-                    }
-                },2000);
+//
+//        for (int i=0; i < 30 ;i++){
+//            list.add(i);
+//        }
+//
+//
+//        new Handler()
+//                .postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        initListView();
+//
+//                    }
+//                },2000);
     }
 
 //    @Override
@@ -78,10 +94,30 @@ public class JavaMainActivity extends FlutterActivity {
 //
 //    }
 
+    private FrameLayout.LayoutParams buildListP(double ratio) {
+        FrameLayout.LayoutParams params;
+        params = new FrameLayout.LayoutParams(
+                dp2px(this, (float) (200*ratio)), dp2px(this, (float) (400*ratio)));
+        params.setMargins(dp2px(this, 10), dp2px(this, 10),
+                dp2px(this, 10), dp2px(this, 10));
+
+        return params;
+    }
+
+    private void initListView(){
+        ImageAdapter adapter = new ImageAdapter(activity, 1,list);
+        ListView listView = new ListView(activity);
+        listView.setAdapter(adapter);
+        activity.addContentView(listView, buildListP(2));
+    }
+
     private void iv(){
         ImageView iv = new ImageView(activity);
         iv.setImageResource(R.drawable.svg_devil);
-        addContentView(iv,buildLayoutParams(null));
+        addContentView(iv,buildLayoutParams(1));
+    }
+    private void lv(){
+
     }
 
     private void tv(){
@@ -89,6 +125,25 @@ public class JavaMainActivity extends FlutterActivity {
         tv.setText("asldkjasdklj");
         tv.setTextColor(0xFFFF8C00);
         tv.setBackgroundColor(0xFF1E90FF);
-        addContentView(tv,buildLayoutParams(null));
+        addContentView(tv,buildLayoutParams(1));
+    }
+
+    class ImageAdapter extends ArrayAdapter<Integer>{
+
+
+        public ImageAdapter(@NonNull Context context, int resource, @NonNull List<Integer> objects) {
+            super(context, resource, objects);
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            ImageView iv = new ImageView(getContext());
+            iv.setImageResource(R.drawable.svg_devil);
+            iv.setLayoutParams(buildLayoutParams(1));
+            return iv;
+        }
     }
 }
+
+

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_origin_view/main_page.dart';
+import 'package:flutter_origin_view/svg/flutter_page.dart';
 
 import 'demo_page.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: MainPage(),
+      home: FlutterPage(),
     );
   }
 }
